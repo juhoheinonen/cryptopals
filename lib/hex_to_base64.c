@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "hex_to_base64.h"
 
 unsigned char* hex_to_bytes(const char *hex_string, int len);
 char *base64_encode(const unsigned char *data, int input_length);
@@ -9,47 +10,40 @@ char *base64_encode(const unsigned char *data, int input_length);
 // input:  49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d
 // output: SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t
 // Function prototype for hex_to_bytes
-int main(int argc, char *argv[])
-{
-	// if argv length is not 2, print usage and exit. Usage should mention that the input is a hex string
-	if (argc != 2) {
-		printf("Usage: %s <hex_string>\n", argv[0]);
-		exit(1);
-	}
+char *hex_to_base64(const char *hex_string) {			
+	int len = strlen(hex_string);
 
-	int len = strlen(argv[1]);
-
-	// if the length is not even, print an error message and exit
+	// if the length is not even, tell it somehow to caller
 	if (len % 2 != 0) {
-		printf("Error: hex string length must be even\n");
-		exit(1);
+        //printf("Hex string length is not even\n");
+        return NULL;
 	}
 
-	unsigned char* bytes = hex_to_bytes(argv[1], len);
+	unsigned char* bytes = hex_to_bytes(hex_string, len);
 		
 	// go through argv[1] and parse two characters at a time to convert to a byte	
 	for (int i = 0; i < len; i += 2) {
-		char byte[3] = {argv[1][i], argv[1][i + 1], '\0'};
+		char byte[3] = {hex_string[i], hex_string[i + 1], '\0'};
 		bytes[i / 2] = strtol(byte, NULL, 16);
 	}
 
 	// loop through the bytes and print the value as integer and add dot between them
-	for (int i = 0; i < len / 2; i++) {
-		printf("%d", bytes[i]);
-		if (i < len / 2 - 1) {
-			printf(".");
-		}
-	}	
+	// for (int i = 0; i < len / 2; i++) {
+	// 	printf("%d", bytes[i]);
+	// 	if (i < len / 2 - 1) {
+	// 		printf(".");
+	// 	}
+	// }	
 
 	// base64 encode the bytes
 	char *encoded_data = base64_encode(bytes, len / 2);
 
 	// print the base64 encoded data
-	printf("\n%s\n", encoded_data);
+	//printf("\n%s\n", encoded_data);
 
 	// free the memory allocated
-	free(bytes);	
-	free(encoded_data);
+	//free(bytes);	
+	return encoded_data;
 }
 
 // Function to convert a hex string to bytes
