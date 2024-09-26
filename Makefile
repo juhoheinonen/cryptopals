@@ -5,7 +5,7 @@ CC = gcc
 CFLAGS = -Wall -Werror
 
 # Source file
-SRC = test_app.c lib/hex_to_base64.c
+SRC = test_app.c lib/hex_to_bytes.c lib/hex_to_base64.c
 
 # Output executable
 OUT = test_app
