@@ -1,0 +1,31 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Launch hex_to_base64",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/hex_to_base64", // Path to your compiled executable
+        "args": ["49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d"], // Command line argument for argv[1]
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
+        "environment": [],
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "setupCommands": [
+          {
+            "description": "Enable pretty-printing for gdb",
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": true
+          }
+        ],
+        "preLaunchTask": "C/C++: gcc build active file", // Ensure this matches the label in tasks.json
+        "miDebuggerPath": "/usr/bin/gdb", // Path to gdb
+        "logging": {
+          "trace": true,
+          "traceResponse": true,
+          "engineLogging": true
+        }
+      }
+    ]
+  }
