@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include "lib/hex_to_base64.h"
-#include "lib/hex_to_bytes.h"
+#include "lib/hex_to_chars.h"
 
 int main(int argc, char** argv) {
     if (argc != 3) {
@@ -13,9 +12,25 @@ int main(int argc, char** argv) {
     int len1 = strlen(argv[1]);
     int len2 = strlen(argv[2]);
 
-    unsigned char* bytes1 = hex_to_bytes(argv[1], len1);
-    unsigned char* bytes2 = hex_to_bytes(argv[2], len2);
+    // if lengths are not equal, tell it and exit
+    if (len1 != len2) {
+        printf("Lengths of the two hex strings are not equal\n");
+        return 1;
+    }
 
-    // todo: XOR the two byte arrays
-    
+    unsigned char* chars1 = hex_to_chars(argv[1], len1);
+    unsigned char* chars2 = hex_to_chars(argv[2], len2);
+
+    unsigned char* xorred = xor_unsigned_char_arrays(chars1, chars2, len1);
+
+    // print the xorred data converted to hex
+    for (int i = 0; i < len1 / 2; i++) {
+        printf("%02x", xorred[i]);
+    }
+    printf("\n");
+
+    free(chars1);
+    free(chars2);
+
+    return 0;
 }
