@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "lib/hex_to_chars.h"
+#include "lib/xor_unsigned_char_arrays.h"
 
 int main(int argc, char** argv) {
     if (argc != 3) {
