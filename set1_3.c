@@ -50,7 +50,7 @@ int main(int argc, char **argv)
         // score xorred by its character frequency
         float score = score_string_by_english_character_frequency(xorred, len / 2);
 
-        if (score > 20) {
+        if (score > 5) {
             // print xorred
             printf("Key: %c\n", i);
             // print score
