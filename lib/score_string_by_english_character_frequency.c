@@ -14,22 +14,51 @@ float score_string_by_english_character_frequency(unsigned char *str, int len)
     float score = 0.0;
     int ascii_frequencies[256] = {0};
 
-    // Count the frequency of each ASCII character in the input string
+      // Count the frequency of each ASCII character in the input string
     for (int i = 0; i < len; i++)
     {
         ascii_frequencies[str[i]]++;
     }
+    
+    int ascii_chars_length = 0;
+    for (int i = 0; i < len; i++) {
+        if ((str[i] >= 65 && str[i] <= 90) || (str[i] >= 97 && str[i] <= 122)) {
+            ascii_chars_length++;
+        }
+    }    
 
-    // Calculate the score based on the frequency of each letter
+    // go through ascii_frequencies. Calculate frequency of each character and compare with the English character frequency.
+    // if the difference is less than 1.0, add the difference to the score
     for (int i = 0; i < 256; i++)
     {
-        if (i >= 'a' && i <= 'z')
+        if (ascii_frequencies[i] > 0)
         {
-            score += ascii_frequencies[i] * frequencies[i - 'a'];
-        }
-        else if (i >= 'A' && i <= 'Z')
-        {
-            score += ascii_frequencies[i] * frequencies[i - 'A'];
+            int ascii_char = 0;
+            if (i >= 65 && i <= 90)
+            {
+                ascii_char = i - 65;
+                //score += frequencies[i - 65] - ascii_frequencies[i];
+            }
+            else if (i >= 97 && i <= 122)
+            {
+                ascii_char = i - 97;
+                //score += frequencies[i - 97] - ascii_frequencies[i];
+            }
+            float calculated_frequency = (float)ascii_frequencies[i] / ascii_chars_length * 100;
+            float expected_frequency = frequencies[ascii_char];
+
+            float difference = expected_frequency - calculated_frequency;
+
+            if (difference < 0)
+            {
+                difference = -difference;
+            }
+
+            // if the difference is less than 1.0, add the difference to the score
+            if (difference < 1.0)
+            {
+                score += difference;
+            }            
         }
     }
 

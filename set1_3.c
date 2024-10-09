@@ -50,13 +50,18 @@ int main(int argc, char **argv)
         // score xorred by its character frequency
         float score = score_string_by_english_character_frequency(xorred, len / 2);
 
-        // print xorred
-        printf("Key: %c\n", i);
-        for (int i = 0; i < len / 2; i++)
-        {            
-            printf("%c", xorred[i]);
+        if (score > 20) {
+            // print xorred
+            printf("Key: %c\n", i);
+            // print score
+            printf("Score: %f\n", score);
+            for (int i = 0; i < len / 2; i++)
+            {            
+                printf("%c", xorred[i]);
+            }
+            printf("\n");
         }
-        printf("\n");
+        
 
         // if the score is greater than the max score, update the max score and the current best score
         if (score > max_score)
