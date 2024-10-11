@@ -5,10 +5,10 @@ CC = gcc
 CFLAGS = -Wall -Werror -g
 
 # Source file
-SRC = set1_3.c lib/*.c
+SRC = set1_4.c lib/*.c
 
 # Output executable
-OUT = set1_3
+OUT = set1_4
 
 # Default target
 all: $(OUT)
