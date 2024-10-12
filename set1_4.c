@@ -21,7 +21,7 @@ int main(int argc, char **argv)
     FILE *file = fopen(argv[1], "r");
     char line[MAX_LINE_LENGTH];
 
-    float max_score = 0;
+    float max_score = -10000;
     unsigned char *current_best_score_text = NULL;
     int possible_cipher_key = 0;
 
