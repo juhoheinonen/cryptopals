@@ -2,7 +2,7 @@
 CC = gcc
 
 # Compiler flags
-CFLAGS = -Wall -Werror -g
+CFLAGS = -Wall -g #-Wall -Werror -g
 
 # Source file
 SRC = set1_4.c lib/*.c

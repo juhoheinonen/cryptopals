@@ -27,6 +27,9 @@ float score_string_by_english_character_frequency(unsigned char *str, int len)
         }
     }    
 
+    int printable_special_chars = 0;
+
+
     // go through ascii_frequencies. Calculate frequency of each character and compare with the English character frequency.
     // if the difference is less than 1.0, add the difference to the score
     for (int i = 0; i < 256; i++)
@@ -36,14 +39,21 @@ float score_string_by_english_character_frequency(unsigned char *str, int len)
             int ascii_char = 0;
             if (i >= 65 && i <= 90)
             {
-                ascii_char = i - 65;
-                //score += frequencies[i - 65] - ascii_frequencies[i];
+                ascii_char = i - 65;                
             }
             else if (i >= 97 && i <= 122)
             {
-                ascii_char = i - 97;
-                //score += frequencies[i - 97] - ascii_frequencies[i];
-            }
+                ascii_char = i - 97;                
+            } 
+            // else if smaller than space
+            else if (i < 32)
+            {
+                // decrease score by one
+                score -= 1;
+            } else {
+                printable_special_chars++;
+            }           
+            
             float calculated_frequency = (float)ascii_frequencies[i] / ascii_chars_length * 100;
             float expected_frequency = frequencies[ascii_char];
 
@@ -60,6 +70,10 @@ float score_string_by_english_character_frequency(unsigned char *str, int len)
                 score += difference;
             }            
         }
+    }
+
+    if (printable_special_chars > 5) {
+        score = 0;
     }
 
     return score;

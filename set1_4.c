@@ -60,6 +60,11 @@ int main(int argc, char **argv)
                 current_best_score_text = xorred;
                 current_best_score_text[len / 2] = '\0';
                 possible_cipher_key = i;
+
+                // print new best score and text
+                printf("New best score: %f\n", max_score);
+                printf("New best text: \"%s\"\n", current_best_score_text);
+
             }
             else
             {
