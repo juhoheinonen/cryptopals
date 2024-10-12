@@ -15,7 +15,7 @@ all: $(OUT)
 
 # Compile the source file
 $(OUT): $(SRC)
-	$(CC) $(CFLAGS) -o $(OUT) $(SRC)
+	$(CC) $(CFLAGS) -o $(OUT) $(SRC) -lm
 
 # Clean target to remove compiled files
 clean:

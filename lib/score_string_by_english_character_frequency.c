@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#include <math.h>
 #include "score_string_by_english_character_frequency.h"
 
 // Function to score a string by its character frequency in English
@@ -14,7 +18,7 @@ float score_string_by_english_character_frequency(unsigned char *str, int len)
     float score = 0.0;
     int ascii_frequencies[256] = {0};
 
-      // Count the frequency of each ASCII character in the input string
+    // Count the frequency of each ASCII character in the input string
     for (int i = 0; i < len; i++)
     {
         ascii_frequencies[str[i]]++;
@@ -22,108 +26,65 @@ float score_string_by_english_character_frequency(unsigned char *str, int len)
     
     int ascii_chars_length = 0;
     for (int i = 0; i < len; i++) {
-        if ((str[i] >= 65 && str[i] <= 90) || (str[i] >= 97 && str[i] <= 122)) {
+        if (isalpha(str[i])) {
             ascii_chars_length++;
         }
     }    
 
     int printable_special_chars = 0;
 
-
-    // go through ascii_frequencies. Calculate frequency of each character and compare with the English character frequency.
-    // if the difference is less than 1.0, add the difference to the score
+    // Calculate frequency of each character and compare with the English character frequency.
     for (int i = 0; i < 256; i++)
     {
         if (ascii_frequencies[i] > 0)
         {
             int ascii_char = 0;
-            if (i >= 65 && i <= 90)
+            if (isupper(i))
             {
-                ascii_char = i - 65;                
+                ascii_char = i - 'A';                
             }
-            else if (i >= 97 && i <= 122)
+            else if (islower(i))
             {
-                ascii_char = i - 97;                
+                ascii_char = i - 'a';                
             } 
-            // else if smaller than space
             else if (i < 32)
             {
-                // decrease score by one
-                score -= 1;
-            } else {
+                // Increase penalty for non-printable characters
+                score -= 5;
+            } 
+            else 
+            {
                 printable_special_chars++;
             }           
             
             float calculated_frequency = (float)ascii_frequencies[i] / ascii_chars_length * 100;
             float expected_frequency = frequencies[ascii_char];
 
-            float difference = expected_frequency - calculated_frequency;
+            float difference = fabs(expected_frequency - calculated_frequency);
 
-            if (difference < 0)
-            {
-                difference = -difference;
-            }
-
-            // if the difference is less than 1.0, add the difference to the score
-            if (difference < 1.0)
-            {
-                score += difference;
-            }            
+            // Use logarithmic differences for better handling of variations
+            score -= log(1 + difference);
         }
     }
 
+    // calculate words by counting spaces
+    int words = 0;
+    for (int i = 0; i < len; i++) {
+        if (str[i] == ' ') {
+            words++;
+        }
+    }
+
+    // for each word, add 0.1 to the score
+    score += words * 0.1;
+    
+    // Penalize for too many printable special characters
     if (printable_special_chars > 5) {
-        score = 0;
+        score -= printable_special_chars * 2;
     }
 
-    return score;
-}
+    // Normalize the score
+    score = score / ascii_chars_length;
 
-#include <stdio.h>
-#include <ctype.h>
-#include <string.h>
-#include "score_string_by_english_character_frequency.h"
-// Function to score a string by its character frequency in English
-// Skip non-letter characters.
-float score_string_by_english_character_frequency2(unsigned char *str, int len)
-{
-    // English letter frequency (in percentage)
-    const double englishFreq[26] = {
-        8.167, 1.492, 2.782, 4.253, 12.702, 2.228, 2.015, 6.094, 6.966, 0.153,
-        0.772, 4.025, 2.406, 6.749, 7.507, 1.929, 0.095, 5.987, 6.327, 9.056,
-        2.758, 0.978, 2.360, 0.150, 1.974, 0.074};
-    // Function to calculate the score of a string
-    int letterCount[26] = {0};
-    int totalLetters = 0;
-    int unprintableCount = 0;
-    //int length = strlen(str);
-    // Count the frequency of each letter and unprintable characters
-    for (int i = 0; i < len; i++)
-    {
-        if (isalpha(str[i]))
-        {
-            letterCount[tolower(str[i]) - 'a']++;
-            totalLetters++;
-        }
-        else if (!isprint(str[i]))
-        {
-            unprintableCount++;
-        }
-    }
-    // If there are no letters, return a very low score
-    if (totalLetters == 0)
-    {
-        return -1000.0;
-    }
-    // Calculate the score based on letter frequency comparison
-    double score = 0.0;
-    for (int i = 0; i < 26; i++)
-    {
-        double observedFreq = (double)letterCount[i] / totalLetters * 100;
-        double diff = observedFreq - englishFreq[i];
-        score -= diff * diff; // Squared difference
-    }
-    // Penalize for unprintable characters
-    score -= unprintableCount * 10;
     return score;
 }

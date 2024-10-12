@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "hex_to_bytes.h": "c"
+        "hex_to_bytes.h": "c",
+        "score_string_by_english_character_frequency.h": "c",
+        "xor_unsigned_char_array_with_unsigned_char.h": "c"
     }
 }

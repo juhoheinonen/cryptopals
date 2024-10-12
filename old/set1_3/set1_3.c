@@ -48,7 +48,7 @@ int main(int argc, char **argv)
         unsigned char *xorred = xor_unsigned_char_array_with_unsigned_char(chars1, len, i);
 
         // score xorred by its character frequency
-        float score = score_string_by_english_character_frequency(xorred, len / 2);
+        float score = score_string_by_is_it_english(xorred, len / 2);
 
         if (score > 5) {
             // print xorred
