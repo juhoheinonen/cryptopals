@@ -17,3 +17,21 @@ a282b2f20430a652e2c652a3124333a653e2b2027630c692b20283165286326302e27282f
 
 Encrypt a bunch of stuff using your repeating-key XOR function. Encrypt your mail. Encrypt your password file. Your .sig file. Get a feel for it. I promise, we aren't wasting your time with this.
 */
+
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+    // usage: ./encrepxor plaintext key
+    if (argc != 3)
+    {
+        printf("Usage: ./encrepxor plaintext key\n");
+        return 1;
+    }
+
+    char *plaintext = argv[1];
+
+    char *key = argv[2];
+
+    return 0;
+}

@@ -2,7 +2,7 @@
 CC = gcc
 
 # Compiler flags
-CFLAGS = -Wall -g -Wall -Werror -g
+CFLAGS = -Wall -g -Wall -Werror -g -ansi -pedantic -std=c99
 
 # Source file
 SRC = hex2b64.c lib/*.c
