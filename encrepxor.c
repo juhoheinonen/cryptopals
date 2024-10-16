@@ -22,7 +22,6 @@ Encrypt a bunch of stuff using your repeating-key XOR function. Encrypt your mai
 #include <stdlib.h>
 #include <string.h>
 
-
 char *encrypt_repeating_key_xor(char *plaintext, char *key, int plaintext_len, int key_len)
 {
     char *ciphertext = malloc(plaintext_len + 1);
