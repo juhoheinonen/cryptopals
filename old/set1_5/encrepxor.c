@@ -19,6 +19,7 @@ Encrypt a bunch of stuff using your repeating-key XOR function. Encrypt your mai
 */
 
 #include <stdio.h>
+#include <string.h>
 
 int main(int argc, char *argv[])
 {
@@ -32,6 +33,16 @@ int main(int argc, char *argv[])
     char *plaintext = argv[1];
 
     char *key = argv[2];
+
+    int plaintext_len = strlen(plaintext);
+    int key_len = strlen(key);    
+
+    for (int i = 0; i < plaintext_len; i++)
+    {        
+        unsigned char xorred = plaintext[i] ^ key[i % key_len];
+        printf("%02x", xorred);
+    }
+    printf("\n");        
 
     return 0;
 }
