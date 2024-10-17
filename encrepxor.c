@@ -56,11 +56,12 @@ int main(int argc, char *argv[])
 
     int plaintext_len = strlen(plaintext);
     int key_len = strlen(key);    
-
+    
     // call a function to encrypt the plaintext with the key
     char *ciphertext = encrypt_repeating_key_xor(plaintext, key, plaintext_len, key_len);    
 
-    printf("%s\n", ciphertext);
+    
+
 
     return 0;
 }
