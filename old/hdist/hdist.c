@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include "lib/hamming_distance.h"
 
 /*
     Calculate the Hamming distance between two strings.
@@ -19,20 +20,10 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    int edit_distance = 0;    
+    int len = strlen(argv[1]);
 
-    for (int i = 0; i < strlen(argv[1]); i++)
-    {
-        // XOR the two strings
-        char c = argv[1][i] ^ argv[2][i];
-        
-        // count the number of 1s in the result
-        while (c)
-        {
-            edit_distance += c & 1;
-            c >>= 1;
-        }
-    }
+    // call a function to calculate the Hamming distance between the two strings
+    int edit_distance = hamming_distance(argv[1], argv[2], len);
 
     return edit_distance;
 }
