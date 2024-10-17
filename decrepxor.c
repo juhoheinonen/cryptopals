@@ -25,7 +25,7 @@ Encrypt a bunch of stuff using your repeating-key XOR function. Encrypt your mai
 
 unsigned char *decrypt_repeating_key_xor(unsigned char *ciphertext, char *key, int ciphertext_len, int key_len)
 {
-    char *plaintext = malloc(ciphertext_len + 1);
+    unsigned char *plaintext = malloc(ciphertext_len + 1);
     if (plaintext == NULL)
     {
         printf("Error: malloc failed\n");
