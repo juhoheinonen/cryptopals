@@ -5,10 +5,10 @@ CC = gcc
 CFLAGS = -Wall -g -Wall -Werror -g -ansi -pedantic -std=c99
 
 # Source file
-SRC = decrepxor.c lib/*.c
+SRC = hdist.c lib/*.c
 
 # Output executable
-OUT = decrepxor 
+OUT = hdist 
 
 # Default target
 all: $(OUT)
