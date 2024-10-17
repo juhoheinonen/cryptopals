@@ -60,8 +60,11 @@ int main(int argc, char *argv[])
     // call a function to encrypt the plaintext with the key
     char *ciphertext = encrypt_repeating_key_xor(plaintext, key, plaintext_len, key_len);    
 
-    
-
+    // print the ciphertext as hexes
+    for (int i = 0; i < plaintext_len; i++)
+    {
+        printf("%02x", ciphertext[i]);
+    }
 
     return 0;
 }
