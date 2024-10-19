@@ -4,7 +4,7 @@
 #include <string.h>
 #include <b64/cencode.h>
 
-char* decode_base64(const char *input) {
+char* encode_base64(const char *input) {
     base64_encodestate state;
     base64_init_encodestate(&state);
     

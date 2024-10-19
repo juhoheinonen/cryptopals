@@ -5,7 +5,7 @@ CC = gcc
 CFLAGS = -Wall -g -Wall -Werror -g -ansi -pedantic -std=c99
 
 # Source file
-SRC = encrepxor.c lib/*.c
+SRC = encrepxor.c ../../lib/*.c
 
 # Output executable
 OUT = encrepxor 
@@ -15,7 +15,7 @@ all: $(OUT)
 
 # Compile the source file
 $(OUT): $(SRC)
-	$(CC) $(CFLAGS) -o $(OUT) $(SRC) -lm
+	$(CC) $(CFLAGS) -o $(OUT) $(SRC) -lm -lb64
 
 # Clean target to remove compiled files
 clean:

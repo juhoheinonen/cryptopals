@@ -65,10 +65,6 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    char *plaintext = argv[1];
-
-    char *key = argv[2];
-
     int plaintext_len = strlen(plaintext);
     int key_len = strlen(key);
 
@@ -77,9 +73,8 @@ int main(int argc, char *argv[])
 
     if (base64_output)
     {
-        // print the ciphertext as base64
-        // (you need to implement base64 encoding function)
-        char *base64_ciphertext = base64_encode(ciphertext, plaintext_len);
+        // print the ciphertext as base64        
+        char *base64_ciphertext = encode_base64(ciphertext);
         printf("%s\n", base64_ciphertext);
         free(base64_ciphertext);
     }
