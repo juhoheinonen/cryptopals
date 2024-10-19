@@ -80,6 +80,7 @@ int main(int argc, char *argv[])
         
     keysize_distance_t kd = {0, 1000}; // Initialize with a large value for normalized_distance
     
+    // Loop through key sizes from 2 to 40.
     for (int keysize = 2; keysize <= 40; keysize++)
     {
         if (keysize * 2 > decoded_length)
