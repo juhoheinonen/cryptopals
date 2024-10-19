@@ -46,8 +46,55 @@ We get more tech support questions for this challenge than any of the other ones
 #include <stdio.h>
 #include "lib/hamming_distance.h"
 #include "lib/hex_string_to_byte_array.h"
+#include "lib/read_file.h"
 
 int main(int argc, char *argv[])
 {
-    return 0;
+    // usage, one arg, file name, is required
+    if (argc != 2)
+    {
+        printf("Usage: %s <file>\n", argv[0]);
+        return 1;
+    }
+    
+    // Read the file contents to a buffer
+    char *buffer = NULL;
+
+
+    // for (int keysize = 2; keysize <= 40; keysize++)
+    // {
+    //     // Read the file
+    //     FILE *file = fopen("set1_6.txt", "r");
+    //     if (file == NULL)
+    //     {
+    //         printf("Error! Could not open file\n");
+    //         return 1;
+    //     }
+
+    //     // Get the file size
+    //     fseek(file, 0, SEEK_END);
+    //     int file_size = ftell(file);
+    //     fseek(file, 0, SEEK_SET);
+
+    //     // Read the file into a buffer
+    //     char *buffer = (char *)malloc(file_size + 1);
+    //     fread(buffer, 1, file_size, file);
+    //     buffer[file_size] = '\0';
+
+    //     // Convert the base64 encoded string to a byte array
+    //     unsigned char *byte_array = base64_string_to_byte_array(buffer, file_size);
+
+    //     // Calculate the hamming distance between the first keysize bytes and the second keysize bytes
+    //     int distance = hamming_distance(byte_array, byte_array + keysize, keysize);
+
+    //     // Normalize the distance
+    //     float normalized_distance = (float)distance / keysize;
+
+    //     printf("Keysize: %d, Distance: %d, Normalized Distance: %f\n", keysize, distance, normalized_distance);
+
+    //     // Free the memory
+    //     free(buffer);
+    //     free(byte_array);
+    //     fclose(file);
+    // }
 }
