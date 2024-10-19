@@ -5,7 +5,7 @@ CC = gcc
 CFLAGS = -Wall -g -Wall -Werror -g -ansi -pedantic -std=c99
 
 # Source file
-SRC = set1_6.c ../lib/*.c
+SRC = set1_6.c ./lib/*.c
 
 # Output executable
 OUT = set1_6 

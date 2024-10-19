@@ -44,7 +44,8 @@ We get more tech support questions for this challenge than any of the other ones
 */
 
 #include <stdio.h>
-#include "../lib/hamming_distance.h"
+#include "lib/hamming_distance.h"
+#include "lib/hex_string_to_byte_array.h"
 
 int main(int argc, char *argv[])
 {
