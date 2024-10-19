@@ -2,7 +2,7 @@
 CC = gcc
 
 # Compiler flags
-CFLAGS = -Wall -g -Wall -Werror -g -ansi -pedantic -std=c99 -lb64
+CFLAGS = -Wall -Werror -g -ansi -pedantic -std=c99
 
 # Source file
 SRC = set1_6.c ./lib/*.c
@@ -15,7 +15,7 @@ all: $(OUT)
 
 # Compile the source file
 $(OUT): $(SRC)
-	$(CC) $(CFLAGS) -o $(OUT) $(SRC) -lm
+	$(CC) $(CFLAGS) -o $(OUT) $(SRC) -lm -lb64
 
 # Clean target to remove compiled files
 clean:
