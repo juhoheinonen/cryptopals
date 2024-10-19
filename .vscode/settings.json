@@ -4,6 +4,7 @@
         "score_string_by_english_character_frequency.h": "c",
         "xor_unsigned_char_array_with_unsigned_char.h": "c",
         "hex_to_chars.h": "c",
-        "cdecode.h": "c"
+        "cdecode.h": "c",
+        "decode_base64.h": "c"
     }
 }

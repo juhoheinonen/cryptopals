@@ -44,6 +44,7 @@ We get more tech support questions for this challenge than any of the other ones
 */
 
 #include <stdio.h>
+#include <string.h>
 #include "lib/hamming_distance.h"
 #include "lib/hex_string_to_byte_array.h"
 #include "lib/read_file.h"
@@ -67,6 +68,10 @@ int main(int argc, char *argv[])
 
     // Decode the base64 encoded buffer
     char *decoded = decode_base64(buffer);
+    
+    // Calculate the hamming distance between the first two KEYSIZE blocks
+    int KEYSIZE = 2;
+    
+    
 
-    printf("Decoded: %s\n", decoded);
 }
