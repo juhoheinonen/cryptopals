@@ -74,11 +74,19 @@ int main(int argc, char *argv[])
 
     // Decode the base64 encoded buffer
     char *decoded = decode_base64(buffer);
+
+    // Get length of the decoded buffer
+    int decoded_length = strlen(decoded);
         
-    keysize_distance_t kd = {0, 1e9}; // Initialize with a large value for normalized_distance
+    keysize_distance_t kd = {0, 1000}; // Initialize with a large value for normalized_distance
     
     for (int keysize = 2; keysize <= 40; keysize++)
     {
+        if (keysize * 2 > decoded_length)
+        {
+            break;
+        }
+
         // Calculate the hamming distance between the first and second keysize worth of bytes
         int distance = hamming_distance(decoded, decoded + keysize, keysize);
         // Calculate the normalized edit distance
