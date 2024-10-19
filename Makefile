@@ -2,7 +2,7 @@
 CC = gcc
 
 # Compiler flags
-CFLAGS = -Wall -g -Wall -Werror -g -ansi -pedantic -std=c99
+CFLAGS = -Wall -g -Wall -Werror -g -ansi -pedantic -std=c99 -lb64
 
 # Source file
 SRC = set1_6.c ./lib/*.c
