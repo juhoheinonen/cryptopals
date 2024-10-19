@@ -50,6 +50,12 @@ We get more tech support questions for this challenge than any of the other ones
 #include "lib/read_file.h"
 #include "lib/decode_base64.h"
 
+typedef struct
+{
+    int keysize;
+    double normalized_distance;
+} keysize_distance_t;
+
 int main(int argc, char *argv[])
 {
     // usage, one arg, file name, is required
@@ -68,10 +74,24 @@ int main(int argc, char *argv[])
 
     // Decode the base64 encoded buffer
     char *decoded = decode_base64(buffer);
+        
+    keysize_distance_t kd = {0, 1e9}; // Initialize with a large value for normalized_distance
     
-    // Calculate the hamming distance between the first two KEYSIZE blocks
-    int KEYSIZE = 2;
-    
-    
+    for (int keysize = 2; keysize <= 40; keysize++)
+    {
+        // Calculate the hamming distance between the first and second keysize worth of bytes
+        int distance = hamming_distance(decoded, decoded + keysize, keysize);
+        // Calculate the normalized edit distance
+        double normalized_distance = (double)distance / keysize;
 
+        // NOTE: first just simple solution, take the smallest normalized distance. If it does not work, then try later more advanced.
+        if (normalized_distance < kd.normalized_distance)
+        {
+            kd.keysize = keysize;
+            kd.normalized_distance = normalized_distance;
+        }        
+    }
+
+    printf("Keysize: %d\n", kd.keysize);
+    printf("Normalized distance: %f\n", kd.normalized_distance);    
 }

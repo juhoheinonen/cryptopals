@@ -1,2 +1,2 @@
-encrepxor -b64 "Tervetuloa kaikki!" JUH
-1e303a3c303c3f39272b75232b3c23213c69
+encrepxor -b64 'Terveutloa kaikki!' JUH
+HjA6PDA9PjknK3UjKzwjITxp
