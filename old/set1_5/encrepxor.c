@@ -21,6 +21,7 @@ Encrypt a bunch of stuff using your repeating-key XOR function. Encrypt your mai
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../../lib/encode_base64.h"
 
 char *encrypt_repeating_key_xor(char *plaintext, char *key, int plaintext_len, int key_len)
 {
@@ -43,10 +44,24 @@ char *encrypt_repeating_key_xor(char *plaintext, char *key, int plaintext_len, i
 
 int main(int argc, char *argv[])
 {
-    // usage: ./encrepxor plaintext key
-    if (argc != 3)
+    int base64_output = 0;
+    char *plaintext;
+    char *key;
+
+    if (argc == 4 && strcmp(argv[1], "-b64") == 0)
     {
-        printf("Usage: ./encrepxor plaintext key\n");
+        base64_output = 1;
+        plaintext = argv[2];
+        key = argv[3];
+    }
+    else if (argc == 3)
+    {
+        plaintext = argv[1];
+        key = argv[2];
+    }
+    else
+    {
+        printf("Usage: ./encrepxor [-b64] plaintext key\n");
         return 1;
     }
 
@@ -55,16 +70,29 @@ int main(int argc, char *argv[])
     char *key = argv[2];
 
     int plaintext_len = strlen(plaintext);
-    int key_len = strlen(key);    
-    
-    // call a function to encrypt the plaintext with the key
-    char *ciphertext = encrypt_repeating_key_xor(plaintext, key, plaintext_len, key_len);    
+    int key_len = strlen(key);
 
-    // print the ciphertext as hexes
-    for (int i = 0; i < plaintext_len; i++)
+    // call a function to encrypt the plaintext with the key
+    char *ciphertext = encrypt_repeating_key_xor(plaintext, key, plaintext_len, key_len);
+
+    if (base64_output)
     {
-        printf("%02x", ciphertext[i]);
+        // print the ciphertext as base64
+        // (you need to implement base64 encoding function)
+        char *base64_ciphertext = base64_encode(ciphertext, plaintext_len);
+        printf("%s\n", base64_ciphertext);
+        free(base64_ciphertext);
+    }
+    else
+    {
+        // print the ciphertext as hexes
+        for (int i = 0; i < plaintext_len; i++)
+        {
+            printf("%02x", ciphertext[i]);
+        }
+        printf("\n");
     }
 
-    return 0;
+    free(ciphertext);
+    return 0;    
 }
