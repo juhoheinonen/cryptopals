@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
         if (keysize * 2 > decoded_length)
         {
             break;
-        }
+        }        
 
         // Calculate the hamming distance between the first and second keysize worth of bytes
         int distance = hamming_distance(decoded, decoded + keysize, keysize);
