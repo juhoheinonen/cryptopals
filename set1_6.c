@@ -88,17 +88,28 @@ int main(int argc, char *argv[])
             break;
         }        
 
-        // Calculate the hamming distance between the first and second keysize worth of bytes
-        int distance = hamming_distance(decoded, decoded + keysize, keysize);
+        // Calculate the hamming distance between the first and second keysize worth of bytes and the third and fourth keysize worth of bytes
+        int distance = hamming_distance(decoded, decoded + keysize, keysize) + hamming_distance(decoded + keysize * 2, decoded + keysize * 3, keysize);
         // Calculate the normalized edit distance
-        double normalized_distance = (double)distance / keysize;
+        double normalized_distance = (double)distance / keysize / 2;        
 
-        // NOTE: first just simple solution, take the smallest normalized distance. If it does not work, then try later more advanced.
         if (normalized_distance < kd.normalized_distance)
         {
             kd.keysize = keysize;
             kd.normalized_distance = normalized_distance;
-        }        
+        }
+
+        // // Calculate the hamming distance between the first and second keysize worth of bytes
+        // int distance = hamming_distance(decoded, decoded + keysize, keysize);
+        // // Calculate the normalized edit distance
+        // double normalized_distance = (double)distance / keysize;
+
+        // // NOTE: first just simple solution, take the smallest normalized distance. If it does not work, then try later more advanced.
+        // if (normalized_distance < kd.normalized_distance)
+        // {
+        //     kd.keysize = keysize;
+        //     kd.normalized_distance = normalized_distance;
+        // }        
     }
 
     printf("Keysize: %d\n", kd.keysize);
