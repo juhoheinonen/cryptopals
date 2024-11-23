@@ -13,6 +13,10 @@ OUT1 = xorhexstrings
 # Default target
 all: $(OUT1)
 
+test:
+	@echo "Running tests"
+	sh test.sh
+
 # Compile the first binary
 $(OUT1): $(SRC1)
 	$(CC) $(CFLAGS) -o $(OUT1) $(SRC1) -lm -lb64
