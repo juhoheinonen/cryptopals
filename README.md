@@ -10,7 +10,10 @@
 ## Advance
 
 ### Set 1.1:
-- folder hex2b64		DONE
+- folder: hex2b64		status: DONE
 
 ### Set 1.2:
-- folder xorhexstrings	DONE
+- folder: xorhexstrings	status: DONE
+
+### Set 1.3:
+- folder: decr1bxor		status: DONE
