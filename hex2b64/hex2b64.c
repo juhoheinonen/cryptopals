@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "lib/hex_string_to_byte_array.h"
+#include "../lib/hex_to_base64.h"
 
 // Function to convert a hex string to a base64 string
 // Input: hex string, output: base64 string
@@ -21,16 +21,14 @@ int main(int argc, char *argv[])
         return 1;
     }
     
-    unsigned char *byte_array;
+	char *base64 = hex_to_base64(hex_string); 
 
-    byte_array = hex_string_to_byte_array(hex_string, hex_string_length);
-
-    int byte_array_length = hex_string_length / 2;
+    int base64_str_length = strlen(base64); 
 
     // print output as base64
-    for (int i = 0; i < byte_array_length; i++)
+    for (int i = 0; i < base64_str_length; i++)
     {
-        printf("%c", byte_array[i]);
+        printf("%c", base64[i]);
     }   
 
     return 0;
