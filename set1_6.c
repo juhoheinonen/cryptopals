@@ -92,6 +92,10 @@ int main(int argc, char *argv[])
         int distance = hamming_distance(decoded, decoded + keysize, keysize) + hamming_distance(decoded + keysize * 2, decoded + keysize * 3, keysize);
         // Calculate the normalized edit distance
         double normalized_distance = (double)distance / keysize / 2;        
+	
+//		printf("keysize: %d\n", keysize);
+//		printf("distanc: %d\n", distance);
+//		printf("norm nd: %f\n", normalized_distance);
 
         if (normalized_distance < kd.normalized_distance)
         {

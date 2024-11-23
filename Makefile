@@ -23,7 +23,6 @@ $(OUT1): $(SRC1)
 $(OUT2): $(SRC2)
 	$(CC) $(CFLAGS) -o $(OUT2) $(SRC2) -lm -lb64
     
-
 # Clean target to remove compiled files
 clean:
 	rm -f $(OUT1) $(OUT2)
