@@ -23,6 +23,8 @@ int main(int argc, char **argv)
     // if the number of arguments is not 2, tell it and exit
     if (argc != 2)
     {
+		printf("Goal: decrypt message which has been XOR'd agains a single character\n");
+		printf("and print out the decrypted message and the probable key.\n");
         printf("Usage: %s <hex_string>\n", argv[0]);
         return 1;
     }
