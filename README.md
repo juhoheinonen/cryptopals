@@ -10,10 +10,13 @@
 ## Advance
 
 ### Set 1.1:
-- folder: hex2b64		status: DONE
+- goal: convert hex to base64
+- folder: 1_1_hex2b64			status: DONE
 
 ### Set 1.2:
-- folder: xorhexstrings	status: DONE
+- goal: fixed XOR
+- folder: 1_1_xorhexstrings		status: DONE
 
 ### Set 1.3:
-- folder: decr1bxor		status: DONE
+- goal: decrypt single-byte XOR cipher
+- folder: 1_3_decr1bxor			status: DONE
