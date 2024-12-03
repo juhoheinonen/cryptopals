@@ -11,6 +11,33 @@ typedef struct
     double normalized_distance;
 } keysize_distance_t;
 
+keysize_distance_t get_probable_keysize(int min_keysize, int max_keysize, char *decoded, int decoded_length)
+{
+	keysize_distance_t kd = {0, 1000}; // Initialize with a large value for normalized_distance
+
+    // Loop through key sizes from 2 to 40.
+    for (int keysize = 2; keysize <= 40; keysize++)
+    {
+        if (keysize * 2 > decoded_length)
+        {
+            break;
+        }        
+
+        // Calculate the hamming distance between the first and second keysize worth of bytes and the third and fourth keysize worth of bytes
+        int distance = hamming_distance(decoded, decoded + keysize, keysize) + hamming_distance(decoded + keysize * 2, decoded + keysize * 3, keysize);
+        // Calculate the normalized edit distance
+        double normalized_distance = (double)distance / keysize / 2;        
+	
+        if (normalized_distance < kd.normalized_distance)
+        {
+            kd.keysize = keysize;
+            kd.normalized_distance = normalized_distance;
+        }
+    }
+
+	return kd;
+}
+
 int main(int argc, char *argv[])
 {
     // usage, one arg, file name, is required
@@ -33,43 +60,7 @@ int main(int argc, char *argv[])
     // Get length of the decoded buffer
     int decoded_length = strlen(decoded);
         
-    keysize_distance_t kd = {0, 1000}; // Initialize with a large value for normalized_distance
-    
-    // Loop through key sizes from 2 to 40.
-    for (int keysize = 2; keysize <= 10; keysize++)
-    {
-        if (keysize * 2 > decoded_length)
-        {
-            break;
-        }        
-
-        // Calculate the hamming distance between the first and second keysize worth of bytes and the third and fourth keysize worth of bytes
-        int distance = hamming_distance(decoded, decoded + keysize, keysize) + hamming_distance(decoded + keysize * 2, decoded + keysize * 3, keysize);
-        // Calculate the normalized edit distance
-        double normalized_distance = (double)distance / keysize / 2;        
-	
-//		printf("keysize: %d\n", keysize);
-//		printf("distanc: %d\n", distance);
-//		printf("norm nd: %f\n", normalized_distance);
-
-        if (normalized_distance < kd.normalized_distance)
-        {
-            kd.keysize = keysize;
-            kd.normalized_distance = normalized_distance;
-        }
-
-        // // Calculate the hamming distance between the first and second keysize worth of bytes
-        // int distance = hamming_distance(decoded, decoded + keysize, keysize);
-        // // Calculate the normalized edit distance
-        // double normalized_distance = (double)distance / keysize;
-
-        // // NOTE: first just simple solution, take the smallest normalized distance. If it does not work, then try later more advanced.
-        // if (normalized_distance < kd.normalized_distance)
-        // {
-        //     kd.keysize = keysize;
-        //     kd.normalized_distance = normalized_distance;
-        // }        
-    }
+    keysize_distance_t kd = get_probable_keysize(2, 40, decoded, decoded_length); 
 
     printf("Keysize: %d\n", kd.keysize);
     printf("Normalized distance: %f\n", kd.normalized_distance);    
