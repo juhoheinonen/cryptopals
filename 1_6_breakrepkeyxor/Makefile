@@ -5,11 +5,11 @@ CC = gcc
 CFLAGS = -Wall -Werror -g -ansi -pedantic -std=c99
 
 # Source files
-SRC1 = hamming_distance.c
+SRC1 = hdist.c ../lib/*.c
 #SRC2 = decrepxor.c ../lib/*.c
 
 # Output executables
-OUT1 = encrepxor
+OUT1 = hdist 
 #OUT2 = decrepxor
 
 # Default target
