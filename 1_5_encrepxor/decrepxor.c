@@ -21,7 +21,7 @@ Encrypt a bunch of stuff using your repeating-key XOR function. Encrypt your mai
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "lib/hex_string_to_byte_array.h"
+#include "../lib/hex_string_to_byte_array.h"
 
 unsigned char *decrypt_repeating_key_xor(unsigned char *ciphertext, char *key, int ciphertext_len, int key_len)
 {

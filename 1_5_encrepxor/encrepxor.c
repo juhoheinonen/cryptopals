@@ -21,7 +21,7 @@ Encrypt a bunch of stuff using your repeating-key XOR function. Encrypt your mai
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "lib/encode_base64.h"
+#include "../lib/encode_base64.h"
 
 char *encrypt_repeating_key_xor(char *plaintext, char *key, int plaintext_len, int key_len)
 {
