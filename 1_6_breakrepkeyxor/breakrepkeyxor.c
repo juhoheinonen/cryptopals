@@ -77,24 +77,29 @@ int main(int argc, char *argv[])
 	}
 
 	// Decode the base64 encoded buffer
-	char *decoded = decode_base64(buffer);
-
-	printf("Decoded string: %s\n", decoded);
+	size_t decoded_length = 0;
+	char *decoded = decode_base64(buffer, &decoded_length);
+/*
+	for (size_t i = 0; i < decoded_length; i++) {
+		if (decoded[i] == '\0') {
+			printf("here");
+		}
+		printf("%c", decoded[i]);
+	}
+*/
+//	printf("Decoded string: %s\n", decoded);
 
 	// Get length of the decoded buffer
-	int decoded_length = strlen(decoded);
+	//	int decoded_length = strlen(decoded);
 
-	printf("decoded length %d\n", decoded_length);
+//	printf("decoded length %d\n", decoded_length);
 
 	keysize_distance_t kd = get_probable_keysize(2, 40, decoded, decoded_length); 
-
-	//  printf("Keysize: %d\n", kd.keysize);
-	//  printf("Normalized distance: %f\n", kd.normalized_distance);
 
 	int num_chunks = 0;
 	char **chunks = split_string_in_chunks_of_length(decoded, decoded_length, kd.keysize, &num_chunks);
 
-	printf("Number of chunks %d\n", num_chunks);
+//	printf("Number of chunks %d\n", num_chunks);
 
 	// Print chunks
     if (chunks) {
