@@ -26,8 +26,10 @@
 - notes: algorithm could maybe be better
 
 ### Set 1.4
-- find one string in file that has been encrypted by single-character XOR
+- goal: find one string in file that has been encrypted by single-character XOR
 - status: DONE
 
 ### Set 1.5
-
+- goal: implement repeating-key XOR
+- status: DONE
+- notes: test for decrepxor missing
