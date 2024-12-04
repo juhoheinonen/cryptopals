@@ -1,4 +1,6 @@
-﻿class Program
+﻿using cp_dotnet.Utils;
+
+class Program
 {
     static void Main(string[] args)
     {

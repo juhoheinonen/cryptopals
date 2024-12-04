@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net9.0": {}
+    "net9.0": {
+      "cp_dotnet.Utils/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/cp_dotnet.Utils.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/cp_dotnet.Utils.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "cp_dotnet.Utils/1.0.0": {
+      "type": "project",
+      "path": "../cp_dotnet.Utils/cp_dotnet.Utils.csproj",
+      "msbuildProject": "../cp_dotnet.Utils/cp_dotnet.Utils.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net9.0": []
+    "net9.0": [
+      "cp_dotnet.Utils >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "/home/juhohe/.nuget/packages/": {}
@@ -13,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/juhohe/Documents/studying/cryptopals/cp_dotnet/src/HexToBase64/HexToBase64.csproj",
-      "projectName": "HexToBase64",
-      "projectPath": "/home/juhohe/Documents/studying/cryptopals/cp_dotnet/src/HexToBase64/HexToBase64.csproj",
+      "projectUniqueName": "/home/juhohe/Documents/studying/cryptopals/cp_dotnet/src/cp_dotnet.1_1_HexToBase64/cp_dotnet.1_1_HexToBase64.csproj",
+      "projectName": "cp_dotnet.1_1_HexToBase64",
+      "projectPath": "/home/juhohe/Documents/studying/cryptopals/cp_dotnet/src/cp_dotnet.1_1_HexToBase64/cp_dotnet.1_1_HexToBase64.csproj",
       "packagesPath": "/home/juhohe/.nuget/packages/",
-      "outputPath": "/home/juhohe/Documents/studying/cryptopals/cp_dotnet/src/HexToBase64/obj/",
+      "outputPath": "/home/juhohe/Documents/studying/cryptopals/cp_dotnet/src/cp_dotnet.1_1_HexToBase64/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/juhohe/.nuget/NuGet/NuGet.Config"
@@ -31,7 +50,11 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/home/juhohe/Documents/studying/cryptopals/cp_dotnet/src/cp_dotnet.Utils/cp_dotnet.Utils.csproj": {
+              "projectPath": "/home/juhohe/Documents/studying/cryptopals/cp_dotnet/src/cp_dotnet.Utils/cp_dotnet.Utils.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

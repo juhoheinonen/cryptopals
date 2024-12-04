@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PbRDC2KUuIU=",
+  "dgSpecHash": "MTUBF+hX078=",
   "success": true,
-  "projectFilePath": "/home/juhohe/Documents/studying/cryptopals/cp_dotnet/src/HexToBase64/HexToBase64.csproj",
+  "projectFilePath": "/home/juhohe/Documents/studying/cryptopals/cp_dotnet/src/cp_dotnet.1_1_HexToBase64/cp_dotnet.1_1_HexToBase64.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
