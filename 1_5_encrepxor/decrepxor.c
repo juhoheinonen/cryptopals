@@ -54,6 +54,10 @@ int main(int argc, char *argv[])
         base64_hex_ciphertext = argv[2];
         size_t decoded_length;
         hex_ciphertext = decode_base64(base64_hex_ciphertext, &decoded_length);
+
+        // print decoded
+        printf("%s\n", hex_ciphertext);
+
         key = argv[3];
     }
     else if (argc == 3)
