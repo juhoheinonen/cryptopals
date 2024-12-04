@@ -12,6 +12,9 @@ class Program
         
         // read input as bytes
         var input = args[0];
-        var bytes = StringUtils.StringToByteArray(input);        
+        var inputBytes = StringUtils.StringToByteArray(input);
+
+        // convert bytes to base64
+        var base64 = Convert.ToBase64String(inputBytes);
     }
 }
