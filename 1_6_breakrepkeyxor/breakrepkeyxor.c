@@ -39,6 +39,19 @@ keysize_distance_t get_probable_keysize(int min_keysize, int max_keysize, char *
 	return kd;
 }
 
+char **chunk_data(char *data, int data_length, int chunk_size, int *num_chunks)
+{
+	*num_chunks = (data_length + chunk_size - 1) / chunk_size; // Calculate the number of chunks
+	char **chunks = malloc(*num_chunks * sizeof(char *));
+	for (int i = 0; i < *num_chunks; i++)
+	{
+		chunks[i] = malloc(chunk_size + 1); // Allocate memory for each chunk
+		strncpy(chunks[i], data + i * chunk_size, chunk_size);
+		chunks[i][chunk_size] = '\0'; // Null-terminate the chunk
+	}
+	return chunks;
+}
+
 int main(int argc, char *argv[])
 {
 	// usage, one arg, file name, is required
@@ -65,9 +78,30 @@ int main(int argc, char *argv[])
 	printf("Probable keysize: %d\n", kd.keysize);
 	printf("Normalized distance: %f\n", kd.normalized_distance);
 
-	// print decoded by looping through the decoded buffer until the decoded length
-	for (int i = 0; i < decoded_length; i++)
+	// Chunk the decoded data
+	int num_chunks;
+	char **chunks = chunk_data(decoded, decoded_length, kd.keysize, &num_chunks);
+
+	char **transposed_chunks = malloc(kd.keysize * sizeof(char *));
+	for (int i = 0; i < kd.keysize; i++)
 	{
-		printf("%c", decoded[i]);
+		transposed_chunks[i] = malloc(num_chunks + 1 * sizeof(char));
+		for (int j = 0; j < num_chunks; j++)
+		{
+			transposed_chunks[i][j] = chunks[j][i];
+		}
+		transposed_chunks[i][num_chunks] = '\0';
 	}
+
+	for (int i = 0; i < kd.keysize; i++)
+	{
+		printf("Chunk %d: %s\n", i, transposed_chunks[i]);
+	}
+	
+	free(chunks); // Free the array of chunks
+
+	free(decoded); // Free the decoded buffer
+	free(buffer); // Free the original buffer
+
+	return 0;
 }
