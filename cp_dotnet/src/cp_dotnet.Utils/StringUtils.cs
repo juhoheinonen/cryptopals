@@ -8,16 +8,18 @@ namespace cp_dotnet.Utils
         /// <param name="input1"></param>
         /// <param name="input2"></param>
         /// <returns></returns>
-        public static byte[] FixedXor(string input1, string input2)
+        public static string FixedXor(string input1, string input2)
         {
             var bytes1 = Convert.FromHexString(input1);
             var bytes2 = Convert.FromHexString(input2);
 
-            byte[] result = new byte[bytes1.Length];
+            byte[] resultBytes = new byte[bytes1.Length];
             for (int i = 0; i < bytes1.Length; i++)
             {
-                result[i] = (byte)(bytes1[i] ^ bytes2[i]);
+                resultBytes[i] = (byte)(bytes1[i] ^ bytes2[i]);
             }
+
+            var result = BitConverter.ToString(resultBytes).Replace("-", "").ToLower();
 
             return result;
         }
