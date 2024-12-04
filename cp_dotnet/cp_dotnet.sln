@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1B893691-1A7B-48B0-A1CE-4B8A6F8DE875}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cp_dotnet.1_1_HexToBase64", "src\cp_dotnet.1_1_HexToBase64\cp_dotnet.1_1_HexToBase64.csproj", "{9C52B720-8C67-41CB-9D42-521719DEC7CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cp_dotnet.1_1_HexToBase64", "src\cp_dotnet.1.1.HexToBase64\cp_dotnet.1.1.HexToBase64.csproj", "{9C52B720-8C67-41CB-9D42-521719DEC7CA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cp_dotnet.Utils", "src\cp_dotnet.Utils\cp_dotnet.Utils.csproj", "{B7E5EB69-45D9-4C3F-95ED-9277E9365733}"
 EndProject

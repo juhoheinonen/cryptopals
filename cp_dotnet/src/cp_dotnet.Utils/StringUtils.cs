@@ -12,5 +12,11 @@ namespace cp_dotnet.Utils
 
             return bytes;
         }
+
+        public static string StringToBase64(string input)
+        {
+            var inputBytes = StringToByteArray(input);
+            return Convert.ToBase64String(inputBytes);
+        }
     }
 }

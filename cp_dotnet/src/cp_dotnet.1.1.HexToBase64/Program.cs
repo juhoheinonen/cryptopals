@@ -10,12 +10,11 @@ class Program
             return;
         }
         
-        // read input as bytes
+        // read input
         var input = args[0];
-        var inputBytes = StringUtils.StringToByteArray(input);
-
+        
         // convert bytes to base64
-        var base64 = Convert.ToBase64String(inputBytes);
+        string base64 = StringUtils.StringToBase64(input);
 
         System.Console.WriteLine(base64);
     }
