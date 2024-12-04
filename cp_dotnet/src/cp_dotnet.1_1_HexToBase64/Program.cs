@@ -16,5 +16,7 @@ class Program
 
         // convert bytes to base64
         var base64 = Convert.ToBase64String(inputBytes);
+
+        System.Console.WriteLine(base64);
     }
 }
