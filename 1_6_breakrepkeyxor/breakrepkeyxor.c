@@ -5,6 +5,8 @@
 #include "../lib/hex_string_to_byte_array.h"
 #include "../lib/read_file.h"
 #include "../lib/decode_base64.h"
+#include "../lib/xor_unsigned_char_array_with_unsigned_char.h"
+#include "../lib/score_string_by_english_character_frequency.h"
 
 typedef struct
 {
@@ -52,6 +54,82 @@ char **chunk_data(char *data, int data_length, int chunk_size, int *num_chunks)
 	return chunks;
 }
 
+unsigned char *char_to_unsigned_char_array(char *input, size_t length)
+{
+    unsigned char *output = malloc(length);
+    if (output == NULL)
+    {
+        printf("Error: malloc failed\n");
+        return NULL;
+    }
+
+    for (size_t i = 0; i < length; i++)
+    {
+        output[i] = (unsigned char)input[i];
+    }
+
+    return output;
+}
+
+void find_cipher_key_and_print_results(unsigned char *chars1, int len)
+{
+    // this initial value is arbitrary
+    float max_score = -999999;
+    unsigned char *current_best_score = NULL;
+    int possible_cipher_key = 0;
+
+    // loop through ascii characters from 0 to 255
+    for (int i = 0; i < 256; i++)
+    {
+        unsigned char *xorred = xor_unsigned_char_array_with_unsigned_char(chars1, len, i);
+
+        // score xorred by its character frequency
+        float score = score_string_by_english_character_frequency(xorred, len / 2);
+
+        if (score > 5)
+        {
+            // print xorred
+            printf("Key: %c\n", i);
+            // print score
+            printf("Score: %f\n", score);
+            for (int i = 0; i < len / 2; i++)
+            {
+                printf("%c", xorred[i]);
+            }
+            printf("\n");
+        }
+
+        // if the score is greater than the max score, update the max score and the current best score
+        if (score > max_score)
+        {
+            max_score = score;
+            current_best_score = xorred;
+            possible_cipher_key = i;
+        }
+        else
+        {
+            free(xorred);
+        }
+    }
+
+    // print the possible cipher key
+    printf("Possible cipher key: %c\n", possible_cipher_key);
+
+    // print the decrypted message
+    for (int i = 0; i < len / 2; i++)
+    {
+        printf("%c", current_best_score[i]);
+    }
+
+    printf("\n");
+
+    // print the decrypted message in hex
+    for (int i = 0; i < len / 2; i++)
+    {
+        printf("%02x", current_best_score[i]);
+    }
+}
+
 int main(int argc, char *argv[])
 {
 	// usage, one arg, file name, is required
@@ -93,9 +171,15 @@ int main(int argc, char *argv[])
 		transposed_chunks[i][num_chunks] = '\0';
 	}
 
+	unsigned char **transposed_chunks_unsigned = malloc(kd.keysize * sizeof(unsigned char *));
 	for (int i = 0; i < kd.keysize; i++)
 	{
-		printf("Chunk %d: %s\n", i, transposed_chunks[i]);
+		transposed_chunks_unsigned[i] = char_to_unsigned_char_array(transposed_chunks[i], num_chunks);
+	}
+
+	for (int i = 0; i < kd.keysize; i++)
+	{
+		find_cipher_key_and_print_results(transposed_chunks_unsigned[i], num_chunks);
 	}
 	
 	free(chunks); // Free the array of chunks

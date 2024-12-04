@@ -9,7 +9,7 @@
             "program": "${workspaceFolder}/1_6_breakrepkeyxor/breakrepkeyxor",
             "args": ["6.txt"],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/1_6_breakrepkeyxor",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",

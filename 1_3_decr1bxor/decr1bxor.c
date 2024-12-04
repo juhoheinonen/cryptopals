@@ -17,6 +17,7 @@ How? Devise some method for "scoring" a piece of English plaintext. Character fr
 #include "../lib/hex_string_to_byte_array.h"
 #include "../lib/xor_unsigned_char_array_with_unsigned_char.h"
 #include "../lib/score_string_by_english_character_frequency.h"
+#include "decr1bxor.h"
 
 int main(int argc, char **argv)
 {
@@ -41,7 +42,14 @@ int main(int argc, char **argv)
 
     unsigned char *chars1 = hex_string_to_byte_array(argv[1], len);
 
-	// this initial value is arbitrary
+    find_cipher_key_and_print_results(chars1, len);
+
+    return 0;
+}
+
+void find_cipher_key_and_print_results(unsigned char *chars1, int len)
+{
+    // this initial value is arbitrary
     float max_score = -999999;
     unsigned char *current_best_score = NULL;
     int possible_cipher_key = 0;
@@ -54,13 +62,14 @@ int main(int argc, char **argv)
         // score xorred by its character frequency
         float score = score_string_by_english_character_frequency(xorred, len / 2);
 
-        if (score > 5) {
+        if (score > 5)
+        {
             // print xorred
             printf("Key: %c\n", i);
             // print score
             printf("Score: %f\n", score);
             for (int i = 0; i < len / 2; i++)
-            {            
+            {
                 printf("%c", xorred[i]);
             }
             printf("\n");
@@ -95,6 +104,4 @@ int main(int argc, char **argv)
     {
         printf("%02x", current_best_score[i]);
     }
-
-    return 0;
 }
