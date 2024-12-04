@@ -1,12 +1,12 @@
 {
     "version": "0.2.0",
     "configurations": [        
-        // run encrepxor
+        // run breakrepxor 
         {
-            "name": "Run encrepxor",
+            "name": "Run breakrepxor",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/breakrepxor",
+            "program": "${workspaceFolder}/1_6_breakrepxor/breakrepxor",
             "args": ["6.txt"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
