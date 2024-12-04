@@ -10,7 +10,6 @@
         
         // read input as bytes
         var input = args[0];
-        var bytes = StringUtils.StringToByteArray(input);
-        
+        var bytes = StringUtils.StringToByteArray(input);        
     }
 }
