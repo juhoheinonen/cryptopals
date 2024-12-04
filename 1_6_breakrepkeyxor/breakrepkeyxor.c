@@ -57,7 +57,8 @@ int main(int argc, char *argv[])
 
 	// Decode the base64 encoded buffer
 	size_t decoded_length = 0;
-	char *decoded = decode_base64(buffer, &decoded_length);
+	size_t input_length = strlen(buffer);
+	char *decoded = decode_base64(buffer, input_length, &decoded_length);
 
 	keysize_distance_t kd = get_probable_keysize(2, 40, decoded, decoded_length);	
 
