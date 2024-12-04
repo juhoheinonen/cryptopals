@@ -45,6 +45,10 @@ public static class SingleByteXorCipher
             {
                 score++;
             }
+            else
+            {
+                score--;
+            }
         }
 
         return score;
