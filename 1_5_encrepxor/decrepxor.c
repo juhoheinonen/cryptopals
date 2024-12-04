@@ -21,6 +21,7 @@ Encrypt a bunch of stuff using your repeating-key XOR function. Encrypt your mai
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../lib/decode_base64.h"
 #include "../lib/hex_string_to_byte_array.h"
 
 unsigned char *decrypt_repeating_key_xor(unsigned char *ciphertext, char *key, int ciphertext_len, int key_len)
@@ -44,23 +45,27 @@ unsigned char *decrypt_repeating_key_xor(unsigned char *ciphertext, char *key, i
 
 int main(int argc, char *argv[])
 {
-    // usage: ./decrepxor hex_ciphertext key
-    if (argc != 3)
+    char *hex_ciphertext;
+    char *base64_hex_ciphertext;
+    char *key;
+
+    if (argc == 4 && strcmp(argv[1], "-b64") == 0)
     {
-        printf("Usage: ./decrepxor hex_ciphertext key\n");
+        base64_hex_ciphertext = argv[2];
+        size_t decoded_length;
+        hex_ciphertext = decode_base64(base64_hex_ciphertext, &decoded_length);
+        key = argv[3];
+    }
+    else if (argc == 3)
+    {
+        hex_ciphertext = argv[1];
+        key = argv[2];
+    }
+    else
+    {
+        printf("Usage: ./decrepxor hex_ciphertext key\n OR\nUsage: ./decrepxor -b64 base64_hex_ciphertext key\n");
         return 1;
     }
-
-    char *hex_ciphertext = argv[1];
-
-    // validate that the hex ciphertext is of even length
-    if (strlen(hex_ciphertext) % 2 != 0)
-    {
-        printf("Error: hex ciphertext must be of even length\n");
-        return 1;
-    }
-
-    char *key = argv[2];
 
     int hex_ciphertext_len = strlen(hex_ciphertext);
 
