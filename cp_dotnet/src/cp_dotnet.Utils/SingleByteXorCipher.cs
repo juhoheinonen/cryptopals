@@ -43,7 +43,8 @@ public static class SingleByteXorCipher
         int score = 0;
         foreach (char c in text)
         {
-            if (char.IsLetterOrDigit(c) || char.IsPunctuation(c) || char.IsWhiteSpace(c))
+            //if (char.IsLetterOrDigit(c) || char.IsPunctuation(c) || char.IsWhiteSpace(c))
+            if (char.IsLetterOrDigit(c) || char.IsWhiteSpace(c) || c == '.' || c == ',' || c == '!' || c == '?' || c == '\'' || c == '"' || c == '(' || c == ')' || c == '-' || c == ':' || c == ';')
             {
                 score++;
             }
