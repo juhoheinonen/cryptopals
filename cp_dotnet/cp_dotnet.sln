@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cp_dotnet.Utils.Tests", "te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cp_dotnet.1.2.FixedXor", "src\cp_dotnet.1.2.FixedXor\cp_dotnet.1.2.FixedXor.csproj", "{31616BFB-D4EF-41E5-8057-2C97FF3E664B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cp_dotnet.1.3.SingleByteXorCipher", "src\cp_dotnet.1.3.SingleByteXorCipher\cp_dotnet.1.3.SingleByteXorCipher.csproj", "{4B4D030F-79E4-4924-AF93-1AC7039D6EC0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,11 +42,16 @@ Global
 		{31616BFB-D4EF-41E5-8057-2C97FF3E664B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31616BFB-D4EF-41E5-8057-2C97FF3E664B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31616BFB-D4EF-41E5-8057-2C97FF3E664B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B4D030F-79E4-4924-AF93-1AC7039D6EC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B4D030F-79E4-4924-AF93-1AC7039D6EC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B4D030F-79E4-4924-AF93-1AC7039D6EC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B4D030F-79E4-4924-AF93-1AC7039D6EC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9C52B720-8C67-41CB-9D42-521719DEC7CA} = {1B893691-1A7B-48B0-A1CE-4B8A6F8DE875}
 		{B7E5EB69-45D9-4C3F-95ED-9277E9365733} = {1B893691-1A7B-48B0-A1CE-4B8A6F8DE875}
 		{D0B82990-BADB-41F2-982E-1297A14470C9} = {4769274A-7E3D-4D92-982D-703A6B65A1F9}
 		{31616BFB-D4EF-41E5-8057-2C97FF3E664B} = {1B893691-1A7B-48B0-A1CE-4B8A6F8DE875}
+		{4B4D030F-79E4-4924-AF93-1AC7039D6EC0} = {1B893691-1A7B-48B0-A1CE-4B8A6F8DE875}
 	EndGlobalSection
 EndGlobal
