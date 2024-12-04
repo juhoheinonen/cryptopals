@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/juhohe/Documents/studying/cryptopals/cp_dotnet/cp_dotnet.csproj",
-      "projectName": "cp_dotnet",
-      "projectPath": "/home/juhohe/Documents/studying/cryptopals/cp_dotnet/cp_dotnet.csproj",
+      "projectUniqueName": "/home/juhohe/Documents/studying/cryptopals/cp_dotnet/src/cp_dotnet.Utils/cp_dotnet.Utils.csproj",
+      "projectName": "cp_dotnet.Utils",
+      "projectPath": "/home/juhohe/Documents/studying/cryptopals/cp_dotnet/src/cp_dotnet.Utils/cp_dotnet.Utils.csproj",
       "packagesPath": "/home/juhohe/.nuget/packages/",
-      "outputPath": "/home/juhohe/Documents/studying/cryptopals/cp_dotnet/obj/",
+      "outputPath": "/home/juhohe/Documents/studying/cryptopals/cp_dotnet/src/cp_dotnet.Utils/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/juhohe/.nuget/NuGet/NuGet.Config"
