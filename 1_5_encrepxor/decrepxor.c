@@ -46,36 +46,35 @@ unsigned char *decrypt_repeating_key_xor(unsigned char *ciphertext, char *key, i
 int main(int argc, char *argv[])
 {
     char *hex_ciphertext;
-    char *base64_hex_ciphertext;
+    char *base64_ciphertext;
     char *key;
+    size_t hex_ciphertext_len;
+    unsigned char *ciphertext;
+    size_t ciphertext_len;
 
     if (argc == 4 && strcmp(argv[1], "-b64") == 0)
     {
-        base64_hex_ciphertext = argv[2];
-        size_t input_length = strlen(base64_hex_ciphertext);        
-        size_t decoded_length;
-        hex_ciphertext = decode_base64(base64_hex_ciphertext, input_length, &decoded_length);        
+        base64_ciphertext = argv[2];
+        size_t input_length = strlen(base64_ciphertext);                
+        ciphertext = decode_base64(base64_ciphertext, input_length, &ciphertext_len);                
 
         key = argv[3];
     }
     else if (argc == 3)
     {
         hex_ciphertext = argv[1];
+        hex_ciphertext_len = strlen(hex_ciphertext);
         key = argv[2];
+        *ciphertext = hex_string_to_byte_array(hex_ciphertext, hex_ciphertext_len);
+        *ciphertext_len = hex_ciphertext_len / 2;
     }
     else
     {
         printf("Usage: ./decrepxor hex_ciphertext key\n OR\nUsage: ./decrepxor -b64 base64_hex_ciphertext key\n");
         return 1;
-    }
+    }           
 
-    int hex_ciphertext_len = strlen(hex_ciphertext);
-
-    unsigned char *ciphertext = hex_string_to_byte_array(hex_ciphertext, hex_ciphertext_len);
-
-    int ciphertext_len = hex_ciphertext_len / 2;
-
-    unsigned char *plaintext = decrypt_repeating_key_xor(ciphertext, key, ciphertext_len, strlen(key));
+    unsigned char *plaintext = decrypt_repeating_key_xor(ciphertext, key, *ciphertext_len, strlen(key));
 
     printf("%s\n", plaintext);
 
