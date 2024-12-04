@@ -52,8 +52,10 @@ int main(int argc, char *argv[])
     if (argc == 4 && strcmp(argv[1], "-b64") == 0)
     {
         base64_hex_ciphertext = argv[2];
+        size_t input_length = strlen(base64_hex_ciphertext);
+        printf("%zu\n", input_length);
         size_t decoded_length;
-        hex_ciphertext = decode_base64(base64_hex_ciphertext, &decoded_length);
+        hex_ciphertext = decode_base64(base64_hex_ciphertext, input_length, &decoded_length);
 
         // print decoded
         printf("%s\n", hex_ciphertext);

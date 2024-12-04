@@ -3,11 +3,10 @@
 #include <string.h>
 #include <b64/cdecode.h>
 
-char* decode_base64(const char *input, size_t *decoded_length) {
+char* decode_base64(const char *input, size_t input_length, size_t *decoded_length) {
     base64_decodestate state;
     base64_init_decodestate(&state);
 
-    size_t input_length = strlen(input);
     size_t output_length = (input_length / 4) * 3;
 
     // Adjust for padding characters
