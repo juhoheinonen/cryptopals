@@ -1,12 +1,12 @@
 {
     "version": "0.2.0",
     "configurations": [        
-        // run breakrepxor 
+        // run breakrepkeyxor 
         {
-            "name": "Run breakrepxor",
+            "name": "Run breakrepkeyxor",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/1_6_breakrepxor/breakrepxor",
+            "program": "${workspaceFolder}/1_6_breakrepkeyxor/breakrepkeyxor",
             "args": ["6.txt"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
