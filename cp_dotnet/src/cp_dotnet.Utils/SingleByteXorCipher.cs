@@ -38,6 +38,8 @@ public static class SingleByteXorCipher
 
     private static int ScoreText(string text)
     {
+
+        
         int score = 0;
         foreach (char c in text)
         {
