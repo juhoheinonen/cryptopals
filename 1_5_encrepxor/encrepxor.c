@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    int plaintext_len = strlen(plaintext);
+    size_t plaintext_len = strlen(plaintext);
     int key_len = strlen(key);
 
     // call a function to encrypt the plaintext with the key
@@ -74,9 +74,9 @@ int main(int argc, char *argv[])
     if (base64_output)
     {
         // print the ciphertext as base64        
-        char *base64_ciphertext = encode_base64(ciphertext);
+        char *base64_ciphertext = encode_base64(ciphertext, plaintext_len);
         printf("%s\n", base64_ciphertext);
-        free(base64_ciphertext);
+        //free(base64_ciphertext);
     }
     else
     {
@@ -88,6 +88,6 @@ int main(int argc, char *argv[])
         printf("\n");
     }
 
-    free(ciphertext);
+    //free(ciphertext);
     return 0;    
 }

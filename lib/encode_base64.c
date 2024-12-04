@@ -4,26 +4,25 @@
 #include <string.h>
 #include <b64/cencode.h>
 
-char* encode_base64(const char *input) {
+char *encode_base64(const char *input, size_t input_length)
+{
     base64_encodestate state;
     base64_init_encodestate(&state);
-    
-    size_t input_length = strlen(input);
-    size_t output_length = input_length * 4 / 3;
 
-    printf("here!\n");
+    printf("%zu\n", input_length);
+
+    size_t output_length = 4 * ((input_length + 2) / 3); // Corrected output length calculation
 
     char *output = (char *)malloc(output_length + 1); // +1 for null terminator
-    
-    if (output == NULL) {
+
+    if (output == NULL)
+    {
         return NULL;
     }
 
-    printf("here2!\n");
-    
     int len = base64_encode_block(input, input_length, output, &state);
     len += base64_encode_blockend(&output[len], &state);
     output[len] = '\0'; // Null-terminate the output string
-    
+
     return output;
 }

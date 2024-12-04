@@ -3,6 +3,6 @@
 #ifndef ENCODE_BASE64_H
 #define ENCODE_BASE64_H
 
-char *encode_base64(const char *input);
+char *encode_base64(const char *input, size_t input_length);
 
 #endif
