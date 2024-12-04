@@ -37,5 +37,6 @@ char* decode_base64(const char *input, size_t *decoded_length) {
 	//printf("Output: %s\n", output);
 	//
 	*decoded_length = base64_decode_block(input, input_length, output, &state);
+	output[*decoded_length] = '\0';
 	return output;
 }

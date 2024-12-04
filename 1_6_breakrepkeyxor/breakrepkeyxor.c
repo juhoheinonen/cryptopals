@@ -97,11 +97,19 @@ int main(int argc, char *argv[])
 	keysize_distance_t kd = get_probable_keysize(2, 40, decoded, decoded_length); 
 
 	int num_chunks = 0;
+	printf("keysize %d\n", kd.keysize);
 	char **chunks = split_string_in_chunks_of_length(decoded, decoded_length, kd.keysize, &num_chunks);
+
+	char** transposed = malloc(kd.keysize * sizeof(char*));
+
+	for (int ki = 0; ki < kd.keysize; ki++) {
+
+	}
 
 //	printf("Number of chunks %d\n", num_chunks);
 
 	// Print chunks
+	/*
     if (chunks) {
         for (size_t i = 0; i < num_chunks; i++) {
             printf("Chunk %zu: %s\n", i, chunks[i]);
@@ -109,4 +117,5 @@ int main(int argc, char *argv[])
         }
         free(chunks);  // Free the array of chunk pointers
 	}
+	*/
 }
