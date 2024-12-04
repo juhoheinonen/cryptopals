@@ -10,11 +10,16 @@ char* encode_base64(const char *input) {
     
     size_t input_length = strlen(input);
     size_t output_length = input_length * 4 / 3;
+
+    printf("here!\n");
+
     char *output = (char *)malloc(output_length + 1); // +1 for null terminator
     
     if (output == NULL) {
         return NULL;
     }
+
+    printf("here2!\n");
     
     int len = base64_encode_block(input, input_length, output, &state);
     len += base64_encode_blockend(&output[len], &state);

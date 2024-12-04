@@ -5,10 +5,10 @@ run_test() {
 	input1=$2
 	input2=$3
 	input3=$4
-	echo $test_binary
-	echo $input1
-	echo $input2
-	echo $input3
+	# echo $test_binary
+	# echo $input1
+	# echo $input2
+	# echo $input3
 	expected_output=$5
 	actual_output=$($test_binary $input1 "$input2" "$input3")
 
