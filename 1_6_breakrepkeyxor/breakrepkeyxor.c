@@ -8,53 +8,54 @@
 
 typedef struct
 {
-    int keysize;
-    double normalized_distance;
+	int keysize;
+	double normalized_distance;
 } keysize_distance_t;
 
 keysize_distance_t get_probable_keysize(int min_keysize, int max_keysize, char *decoded, int decoded_length)
 {
 	keysize_distance_t kd = {0, 1000}; // Initialize with a large value for normalized_distance
 
-    // Loop through key sizes from 2 to 40.
-    for (int keysize = 2; keysize <= 40; keysize++)
-    {
-        if (keysize * 2 > decoded_length)
-        {
-            break;
-        }        
+	// Loop through key sizes from 2 to 40.
+	for (int keysize = 2; keysize <= 40; keysize++)
+	{
+		if (keysize * 2 > decoded_length)
+		{
+			break;
+		}
 
-        // Calculate the hamming distance between the first and second keysize worth of bytes and the third and fourth keysize worth of bytes
-        int distance = hamming_distance(decoded, decoded + keysize, keysize) + hamming_distance(decoded + keysize * 2, decoded + keysize * 3, keysize);
-        // Calculate the normalized edit distance
-        double normalized_distance = (double)distance / keysize / 2;        
-	
-        if (normalized_distance < kd.normalized_distance)
-        {
-            kd.keysize = keysize;
-            kd.normalized_distance = normalized_distance;
-        }
-    }
+		// Calculate the hamming distance between the first and second keysize worth of bytes and the third and fourth keysize worth of bytes
+		int distance = hamming_distance(decoded, decoded + keysize, keysize) + hamming_distance(decoded + keysize * 2, decoded + keysize * 3, keysize);
+		// Calculate the normalized edit distance
+		double normalized_distance = (double)distance / keysize / 2;
+
+		if (normalized_distance < kd.normalized_distance)
+		{
+			kd.keysize = keysize;
+			kd.normalized_distance = normalized_distance;
+		}
+	}
 
 	return kd;
 }
 
-char** split_string_in_chunks_of_length(char* input, int input_length, int chunk_size, int* num_chunks) 
+char **split_string_in_chunks_of_length(char *input, int input_length, int chunk_size, int *num_chunks)
 {
 	*num_chunks = (input_length + chunk_size - 1) / chunk_size;
-	char** chunks = malloc(*num_chunks * sizeof(char*));
-	
-	for (int i = 0; i < *num_chunks; i++) {
+	char **chunks = malloc(*num_chunks * sizeof(char *));
+
+	for (int i = 0; i < *num_chunks; i++)
+	{
 		// allocate memory for each chunk
 		chunks[i] = malloc(chunk_size + 1); // +1 for null terminator
-		// Copy chunk from input string
-        int start = i * chunk_size;
-		int copy_length = (start + chunk_size < input_length) 
-			? chunk_size 
-			: input_length - start;
+											// Copy chunk from input string
+		int start = i * chunk_size;
+		int copy_length = (start + chunk_size < input_length)
+							  ? chunk_size
+							  : input_length - start;
 
 		strncpy(chunks[i], input + start, copy_length);
-		chunks[i][copy_length] = '\0';  // Null-terminate the chunk	
+		chunks[i][copy_length] = '\0'; // Null-terminate the chunk
 	}
 
 	return chunks;
@@ -79,43 +80,6 @@ int main(int argc, char *argv[])
 	// Decode the base64 encoded buffer
 	size_t decoded_length = 0;
 	char *decoded = decode_base64(buffer, &decoded_length);
-/*
-	for (size_t i = 0; i < decoded_length; i++) {
-		if (decoded[i] == '\0') {
-			printf("here");
-		}
-		printf("%c", decoded[i]);
-	}
-*/
-//	printf("Decoded string: %s\n", decoded);
 
-	// Get length of the decoded buffer
-	//	int decoded_length = strlen(decoded);
-
-//	printf("decoded length %d\n", decoded_length);
-
-	keysize_distance_t kd = get_probable_keysize(2, 40, decoded, decoded_length); 
-
-	int num_chunks = 0;
-	printf("keysize %d\n", kd.keysize);
-	char **chunks = split_string_in_chunks_of_length(decoded, decoded_length, kd.keysize, &num_chunks);
-
-	char** transposed = malloc(kd.keysize * sizeof(char*));
-
-	for (int ki = 0; ki < kd.keysize; ki++) {
-
-	}
-
-//	printf("Number of chunks %d\n", num_chunks);
-
-	// Print chunks
-	/*
-    if (chunks) {
-        for (size_t i = 0; i < num_chunks; i++) {
-            printf("Chunk %zu: %s\n", i, chunks[i]);
-            free(chunks[i]);  // Don't forget to free each chunk
-        }
-        free(chunks);  // Free the array of chunk pointers
-	}
-	*/
+	keysize_distance_t kd = get_probable_keysize(2, 40, decoded, decoded_length);	
 }
