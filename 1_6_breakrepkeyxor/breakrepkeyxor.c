@@ -64,4 +64,10 @@ int main(int argc, char *argv[])
 
 	printf("Probable keysize: %d\n", kd.keysize);
 	printf("Normalized distance: %f\n", kd.normalized_distance);
+
+	// print decoded by looping through the decoded buffer until the decoded length
+	for (int i = 0; i < decoded_length; i++)
+	{
+		printf("%c", decoded[i]);
+	}
 }
