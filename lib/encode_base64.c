@@ -8,10 +8,8 @@ char *encode_base64(const char *input, size_t input_length)
 {
     base64_encodestate state;
     base64_init_encodestate(&state);
-
-    printf("%zu\n", input_length);
-
-    size_t output_length = 4 * ((input_length + 2) / 3); // Corrected output length calculation
+  
+    size_t output_length = 5 * ((input_length + 2) / 3); // Corrected output length calculation. There may be some extra.
 
     char *output = (char *)malloc(output_length + 1); // +1 for null terminator
 

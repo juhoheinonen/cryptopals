@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
         // print the ciphertext as base64        
         char *base64_ciphertext = encode_base64(ciphertext, plaintext_len);
         printf("%s\n", base64_ciphertext);
-        //free(base64_ciphertext);
+        free(base64_ciphertext);
     }
     else
     {
@@ -88,6 +88,6 @@ int main(int argc, char *argv[])
         printf("\n");
     }
 
-    //free(ciphertext);
+    free(ciphertext);
     return 0;    
 }
