@@ -39,28 +39,6 @@ keysize_distance_t get_probable_keysize(int min_keysize, int max_keysize, char *
 	return kd;
 }
 
-char **split_string_in_chunks_of_length(char *input, int input_length, int chunk_size, int *num_chunks)
-{
-	*num_chunks = (input_length + chunk_size - 1) / chunk_size;
-	char **chunks = malloc(*num_chunks * sizeof(char *));
-
-	for (int i = 0; i < *num_chunks; i++)
-	{
-		// allocate memory for each chunk
-		chunks[i] = malloc(chunk_size + 1); // +1 for null terminator
-											// Copy chunk from input string
-		int start = i * chunk_size;
-		int copy_length = (start + chunk_size < input_length)
-							  ? chunk_size
-							  : input_length - start;
-
-		strncpy(chunks[i], input + start, copy_length);
-		chunks[i][copy_length] = '\0'; // Null-terminate the chunk
-	}
-
-	return chunks;
-}
-
 int main(int argc, char *argv[])
 {
 	// usage, one arg, file name, is required
@@ -82,4 +60,7 @@ int main(int argc, char *argv[])
 	char *decoded = decode_base64(buffer, &decoded_length);
 
 	keysize_distance_t kd = get_probable_keysize(2, 40, decoded, decoded_length);	
+
+	printf("Probable keysize: %d\n", kd.keysize);
+	printf("Normalized distance: %f\n", kd.normalized_distance);
 }

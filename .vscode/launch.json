@@ -1,34 +1,6 @@
 {
     "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Run test_app",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/set1_6",
-            "args": ["cipher_huck.txt"],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ],
-            "preLaunchTask": "",
-            "miDebuggerPath": "/usr/bin/gdb",
-            "logging": {
-                "moduleLoad": false,
-                "trace": false,
-                "engineLogging": false,
-                "programOutput": true,
-                "exceptions": true
-            }
-        },
+    "configurations": [        
         // run encrepxor
         {
             "name": "Run encrepxor",
