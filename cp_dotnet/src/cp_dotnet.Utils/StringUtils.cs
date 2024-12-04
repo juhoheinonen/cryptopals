@@ -18,5 +18,10 @@ namespace cp_dotnet.Utils
             var inputBytes = StringToByteArray(input);
             return Convert.ToBase64String(inputBytes);
         }
+
+        public static object FixedXor(string input1, string input2)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
